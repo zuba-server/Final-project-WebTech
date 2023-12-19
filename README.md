@@ -1,5 +1,8 @@
 RWAKIBIBI GIHOZO ZUBEIR 
 24181
+
+I tried  to upload my project on github but it was showing me that the file is too large to upload, so I ziped the project.
+
 This online banking system is a comprehensive platform designed to revolutionize financial interactions. 
 The project is bifurcated into two vital components:
 backend  
