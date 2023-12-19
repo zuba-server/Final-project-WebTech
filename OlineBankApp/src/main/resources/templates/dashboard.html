@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script th:src="@{/js/bootstrap.bundle.js}"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<!-- Header -->
+<div th:include="component/incl/header"></div>
+
+<!-- Transact Offcanvas: pulls from the left -->
+<div th:include="component/transact_offcanvas"></div>
+
+<!-- Add Accounts Offcanvas: pulls from the right -->
+<div th:include="component/add_account_offcanvas"></div>
+
+<!-- Container -->
+<div class="container">
+
+    <!-- Display Message -->
+    <!-- Thymeleaf if statement -->
+<!--    <div th:if="${success != null}" class="alert alert-info text-center border border-info">-->
+<!--        <b th:text="${success}"></b>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; End Of Display Message &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Display Message &ndash;&gt;-->
+<!--    &lt;!&ndash; Thymeleaf if statement &ndash;&gt;-->
+<!--    <div th:if="${error != null}" class="alert alert-danger text-center border border-danger">-->
+<!--        <b th:text="${error}"></b>-->
+<!--    </div>-->
+    <!-- End Of Display Message -->
+
+</div>
+<!-- End Of Container -->
+
+<!-- Thymeleaf switch statement -->
+<div th:switch="${#lists.size(userAccounts) > 0}">
+    <div th:case="true">
+        <!-- Display Accounts -->
+        <div th:include="component/account_display"></div>
+    </div>
+    <div th:case="false">
+        <!-- Don't Display Accounts -->
+        <div th:include="component/no_accounts_display"></div>
+    </div>
+</div>
+<!-- End of Thymeleaf switch statement -->
+
+<!-- Footer -->
+<div th:include="component/incl/footer"></div>
+
+</body>
+</html>

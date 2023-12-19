@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdraw Form</title>
+</head>
+<body>
+
+<!-- Card: Withdraw Card -->
+<div class="card withdraw-card">
+  <!-- Card Body -->
+  <div class="card-body">
+
+    <!-- Deposit Form -->
+    <form action="/transact/withdraw" method="POST" class="deposit-form">
+      <!-- Form Group -->
+      <div class="form-group mb-2">
+        <label for=""> Enter Withdrawal Amount</label>
+        <input type="text" name="withdrawal_amount"class="form-control" placeholder="Enter Withdrawal Amount">
+      </div>
+      <!-- End Of Form Group -->
+
+      <!-- Form Group -->
+      <div class="form-group">
+        <label for="">Select Account</label>
+        <!-- Select Account Option -->
+        <select name="account_id" class="form-control" id="">
+          <option value="">-- Select Account --</option>
+          <!-- Use th:if and th:each on the <option> tag -->
+          <option th:if="${userAccounts != null}" th:each="selectAccount : ${userAccounts}"
+                  th:value="${selectAccount.account_id}" th:text="${selectAccount.account_name}">
+          </option>
+          <!-- End Select Account Option -->
+        </select>
+        <!-- End Select Account Option -->
+      </div>
+      <!-- End Of Group -->
+
+
+      <!-- Form Group -->
+      <div class="form-group my-2">
+        <button id="" class="btn btn-md transact-btn">Withdraw</button>
+      </div>
+      <!-- End Of Form Group -->
+    </form>
+    <!-- End Withdrawal Form  -->
+  </div>
+  <!-- End Of Card Body -->
+</div>
+<!-- End Of Card: Withdraw Card -->
+
+</body>
+</html>

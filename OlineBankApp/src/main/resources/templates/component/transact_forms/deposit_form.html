@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+  <title>Deposit Form</title>
+  <!-- Add any necessary stylesheets or scripts here -->
+</head>
+<body>
+
+<!-- Card: Deposit Card -->
+<div class="card deposit-card">
+  <!-- Card Body -->
+  <div class="card-body">
+
+    <!-- Deposit Form -->
+    <form action="/transact/deposit" method="POST" class="deposit-form">
+      <!-- Form Group -->
+      <div class="form-group mb-2">
+        <label for=""> Enter Deposit Amount</label>
+        <input type="text" name="deposit_amount"class="form-control" placeholder="Enter Deposit Amount">
+      </div>
+      <!-- End Of Form Group -->
+
+
+      <!-- Form Group -->
+      <div class="form-group">
+        <label for="">Select Account</label>
+        <!-- Select Account Option -->
+        <select name="account_id" class="form-control" id="">
+          <option value="">-- Select Account --</option>
+          <!-- Use th:if and th:each on the <option> tag -->
+          <option th:if="${userAccounts != null}" th:each="selectAccount : ${userAccounts}"
+                  th:value="${selectAccount.account_id}" th:text="${selectAccount.account_name}">
+          </option>
+          <!-- End Select Account Option -->
+        </select>
+      </div>
+      <!-- End Of Group -->
+
+
+      <!-- Form Group -->
+      <div class="form-group my-2">
+        <button id="" class="btn btn-md transact-btn">Deposit</button>
+      </div>
+      <!-- End Of Form Group -->
+    </form>
+    <!-- End Deposit Form  -->
+
+  </div>
+  <!-- End Of Card Body -->
+
+</div>
+<!-- End Of Card: Deposit Card -->
+
+</body>
+</html>

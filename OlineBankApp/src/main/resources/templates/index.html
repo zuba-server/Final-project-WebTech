@@ -1,0 +1,58 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <title>Login</title>
+</head>
+<body class="d-flex align-items-center justify-content-center">
+
+<!-- Card: Login Form Card -->
+<div id="sample-text-card" class="card col-6 bg-transparent border-0">
+<!-- Card Body -->
+<div class="card-body">
+    <!-- Card Header -->
+    <h1 class="mb-3" style="color: black;">Bank System</h1>
+    <!-- End Card Header -->
+
+    <!-- Card Title -->
+    <h5 class="card-title">
+        Flexible Banking Solutions
+    </h5>
+    <!-- End Of Card Title -->
+
+    <!-- Card Text -->
+    <p class="card-text" style="color: black;font-size: 17px;">
+        Welcome to the springboot Bank-App. this web-based application is
+        used for performing specific activities such as creating account and
+        banking transactions such as cash deposits,withdraw,
+        transfer, payment.the system allows customers to signup, sign-in
+        and proceed with the dashboard, and proceed with the navigation of the displayed
+        operations/transactions.
+        <br><br>
+        Note: while registering , you may receive an internal server error..!,don't
+        worry that indicates that there is a connection issue with email server,please
+        proceed to login with your registered Email and Password.
+    </p>
+    <!-- End Of Card Text -->
+
+    <!-- Button Wrapper -->
+    <div class="button-wrapper d-flex align-items-center">
+        <a href="/register" class="btn btn-md register" role="button">Register</a>
+        <a href="/login" class="btn btn-md login" role="button">Login</a>
+    </div>
+    <!-- End Of Button Wrapper -->
+
+</div>
+<!-- End Of Card Body -->
+
+</div>
+</body>
+</html>

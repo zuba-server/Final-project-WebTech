@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/css/fontawesome/css/all.css}">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <script th:src="@{/js/bootstrap.bundle.js}"></script>
+  <title>Dashboard</title>
+</head>
+<body>
+
+<!-- Header -->
+<div th:include="component/incl/header"></div>
+
+<!-- Container -->
+<div class="container my-4">
+
+  <!-- Card: Transaction History Card -->
+  <div class="card transaction-history shadow">
+    <!-- Card Header -->
+    <div class="card-header">
+      <i class="fas fa-credit-card me-2" aria-hidden="true"></i> Transaction History
+    </div>
+    <!-- End Of Card Header -->
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <th:block th:if="${transact_history != null}">
+        <button id="downloadPdfButton" style="background-color: #5cb85c; color: #fff; border: 1px solid #4cae4c; padding: 6px 12px; cursor: pointer; border-radius: 4px;">Download PDF</button>
+        <br><br>
+        <table class="table text-center table-striped">
+          <tr>
+            <th>user_id</th>
+            <th>Transaction Type</th>
+            <th>Amount</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Reason Code</th>
+            <th>Created at</th>
+            <th>Action</th>
+          </tr>
+          <tr th:each="transactionHistory : ${transact_history}">
+            <td th:text="${transactionHistory.user_id}"></td>
+            <td th:text="${transactionHistory.transaction_type}"></td>
+            <td th:text="${transactionHistory.amount}"></td>
+            <td th:text="${transactionHistory.source}"></td>
+            <td th:text="${transactionHistory.status}"></td>
+            <td th:text="${transactionHistory.reason_code}"></td>
+            <td th:text="${transactionHistory.created_at}"></td>
+            <td>
+              <button class="deleteButton" th:attr="data-userid=${transactionHistory.user_id}" style="background-color: #d9534f; color: #fff; border: 1px solid #d9534f; padding: 6px 12px; cursor: pointer; border-radius: 4px;">Delete</button>
+              &nbsp;&nbsp;
+              <!-- Add an update button that calls the updateTransaction function -->
+              <!-- Add an update button that calls the updateTransaction function -->
+              <button class="updateButton" th:attr="data-userid=${transactionHistory.user_id}" style="background-color: #5bc0de; color: #fff; border: 1px solid #5bc0de; padding: 6px 12px; cursor: pointer; border-radius: 4px;">Update</button>
+
+            </td>
+          </tr>
+        </table>
+      </th:block>
+    </div>
+    <!-- Add a button for PDF download -->
+
+    <!-- End Of Card: Transaction History Card -->
+</div>
+
+
+
+
+<!-- Footer -->
+<div th:include="component/incl/footer "></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+  // Wait for the document to be ready
+  $(document).ready(function () {
+    // Attach a click event handler to all elements with the class "deleteButton"
+    $(".deleteButton").click(function () {
+      // Get the user ID from the "data-userid" attribute
+      var userId = $(this).data("userid");
+
+      // Make an AJAX request to delete transaction records
+      $.ajax({
+        type: "GET",
+        url: "/transaction/delete/" + userId,
+        success: function (response) {
+          // Optionally, you can handle success (e.g., show a message, update the UI)
+          alert(response);
+        },
+        error: function (xhr, status, error) {
+          // Optionally, you can handle errors (e.g., show an error message)
+          alert("Error: " + xhr.responseText);
+        }
+      });
+    });
+    // Attach a click event handler to the "Download PDF" button
+  });
+</script>
+  <!-- ... (existing code) -->
+
+  <script>
+    $(document).ready(function () {
+      // ... (existing code)
+
+      // Attach a click event handler to the "Download PDF" button
+      $("#downloadPdfButton").click(function () {
+        // Make an AJAX request to the server to generate and download the PDF
+        $.ajax({
+          type: "GET",
+          url: "/pdf/download",
+          success: function () {
+            // Optionally, you can handle success (e.g., show a message)
+            console.log("PDF download initiated");
+          },
+          error: function (xhr, status, error) {
+            // Optionally, you can handle errors (e.g., show an error message)
+            alert("Error: " + xhr.responseText);
+          }
+        });
+      });
+
+      // ... (existing code)
+    });
+  </script>
+
+  <!-- ... (existing code) -->
+
+</div>
+</body>
+</html>
+

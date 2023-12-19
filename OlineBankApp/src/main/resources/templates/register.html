@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="css/fontawesome/css/all.css">
+  <link rel="stylesheet" href="css/default.css">
+  <title>Register</title>
+</head>
+<body class="d-flex align-items-center justify-content-center">
+
+<!-- Card: Registration Form Card -->
+<div class="card registration-form-card col-6 bg-transparent border-0">
+  <!-- Card Body -->
+  <div class="card-body">
+    <!-- Form Header -->
+    <h1 class="form-header card-title mb-3">
+      <i class="fa fa-edit" style="color: black;"></i> <h1 style="color: black;">Register</h1>
+    </h1>
+    <!-- End Of Form Header -->
+
+    <!-- Display Message -->
+    <div th:if="${#request.getAttribute('passwordMisMatch') != null}" class="alert alert-danger text-center border border-danger">
+      <b th:text="${#request.getAttribute('passwordMisMatch')}"></b>
+    </div>
+    <!-- End Of Display Message -->
+
+    <!-- Regsitration Form -->
+    <form action="/register" class="reg-form" th:action="@{/register}" th:object="${registerUser}" method="post">
+      <!-- Row -->
+      <div class="row">
+        <!-- From Group -->
+        <div class="form-group col">
+          <input type="text" th:field="*{first_name}" class="form-control form-control-lg" placeholder="Enter First Name"/>
+          <p th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}" class="text-white bg-danger"></p>
+        </div>
+        <!-- End Of From Group -->
+
+        <!-- From Group -->
+        <div class="form-group col">
+          <input type="text" th:field="*{last_name}" class="form-control form-control-lg" placeholder="Enter Last Name"/>
+          <p th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}" class="text-white bg-danger"></p>
+        </div>
+        <!-- End Of From Group -->
+      </div>
+      <!-- End Of Row -->
+
+      <!-- From Group -->
+      <div class="form-group col">
+        <input type="email" th:field="*{email}" class="form-control form-control-lg" placeholder="Enter Email"/>
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-white bg-danger"></p>
+      </div>
+      <!-- End Of From Group -->
+
+      <!-- Row -->
+      <div class="row">
+        <!-- From Group -->
+        <div class="form-group col">
+          <input type="password" th:field="*{password}" class="form-control form-control-lg" placeholder="Enter Password"/>
+          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-white bg-danger"></p>
+        </div>
+        <!-- End Of From Group -->
+
+        <!-- From Group -->
+        <div class="form-group col">
+          <input type="password" name="confirm_password" class="form-control form-control-lg" placeholder="Confirm Password"/>
+          <small class="text-white bg-danger" th:text="${confirm_pass}"></small>
+        </div>
+        <!-- End Of From Group -->
+      </div>
+      <!-- End Of Row -->
+
+      <!-- From Group -->
+      <div class="form-group col">
+        <button type="submit" class="btn btn-lg">Register</button>
+      </div>
+      <!-- End Of From Group -->
+
+    </form>
+    <!-- End Of Regsitration Form -->
+
+    <!-- Card Text -->
+    <p class="card-text text-white my-2">
+    <p style="color: black;">Already have an account?</p><span class="ms-2"><a href="/login" class="btn bt-sm text-warning"><font style="color: green;">Sign In</font></a></span>
+    </p>
+    <!-- Card Text -->
+
+    <!-- Back Button To Landing Page -->
+    <small class="text-warning">
+      <i class="fa fa-arrow-alt-circle-left" style="color: green;"></i> <a href="/" class="btn btn-sm text-warning"><font style="color: green">Back</font></a>
+    </small>
+    <!-- End Of Back Button To Landing Page -->
+
+  </div>
+  <!-- End Of Card Body -->
+</div>
+<!-- Card: Registration Form Card -->
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/css/fontawesome/css/all.css}">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <script th:src="@{/js/bootstrap.bundle.js}"></script>
+  <title>Dashboard</title>
+</head>
+<body>
+
+<!-- Header -->
+<div th:include="component/incl/header"></div>
+
+<!-- Container -->
+<div class="container my-4">
+
+  <!-- Card: Payment History Card -->
+  <div class="card payment-history shadow">
+    <!-- Card Header -->
+    <div class="card-header">
+      <i class="fas fa-credit-card me-2" aria-hidden="true"></i> Payment History
+    </div>
+    <!-- End Of Card Header -->
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <th:block th:if="${payment_history != null}">
+        <table class="table text-center table-striped">
+          <tr>
+            <th>Record Number</th>
+            <th>Beneficiary</th>
+            <th>Beneficiary Account Number</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Reference</th>
+            <th>Reason Code</th>
+            <th>Created at</th>
+            <th>Action</th>
+          </tr>
+          <tr th:each="payment : ${payment_history}">
+            <td th:text="${payment.payment_id}"></td>
+            <td th:text="${payment.beneficiary}"></td>
+            <td th:text="${payment.beneficiary_acc_no}"></td>
+            <td th:text="${payment.amount}"></td>
+            <td th:text="${payment.status}"></td>
+            <td th:text="${payment.reference_no}"></td>
+            <td th:text="${payment.reason_code}"></td>
+            <td th:text="${#dates.format(payment.created_at, 'dd-MM-yyyy HH:mm:ss')}"></td>
+            <td>
+              <!-- Add a delete button that calls the deletePayment function -->
+              <button>
+                <a th:href="@{'/deletePayment/' + ${payment.payment_id}}">
+                  Delete
+                </a>
+              </button>
+              <button th:onclick="'updatePayment(\'' + ${payment.payment_id} + '\')'">Update</button>
+            </td>
+          </tr>
+        </table>
+      </th:block>
+    </div>
+    <!-- End Of Card Body -->
+  </div>
+  <!-- End Of Card: Payment History Card -->
+</div>
+<!-- End Of Container -->
+
+<!-- Footer -->
+<div th:include="component/incl/footer"></div>
+
+</body>
+</html>
